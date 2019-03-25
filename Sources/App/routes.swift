@@ -1,4 +1,5 @@
 import Vapor
+import Leaf
 
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
@@ -9,7 +10,11 @@ public func routes(_ router: Router) throws {
     
     // Basic "Hello, world!" example
     router.get("hello") { req in
-        return "Hello, world!"
+        return "Hello, world"
+    }
+    
+    router.get("leaf") { req -> Future<View> in
+        return try req.view().render("hello", ["name": "Shun"])
     }
 
     // Example of configuring a controller
